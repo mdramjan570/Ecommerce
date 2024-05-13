@@ -29,7 +29,7 @@ const LoginSignUp = () => {
   };
   const signup = async () => {
     let responData;
-    await fetch("https://ecommerce-2x8d.onrender.com//signup", {
+    await fetch("https://ecommerce-2x8d.onrender.com/signup", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
