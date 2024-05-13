@@ -13,14 +13,14 @@ const ShopContextProvider = (props) => {
   const [all_product, setAllProduct] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
   useEffect(() => {
-    fetch("http://localhost:4000/allproducts")
+    fetch("https://ecommerce-2x8d.onrender.com/allproducts")
       .then((resp) => resp.json())
       .then((data) => setAllProduct(data));
 
     //update cart item also
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/getcart", {
+      fetch("https://ecommerce-2x8d.onrender.com/getcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -37,7 +37,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/addtocart", {
+      fetch("https://ecommerce-2x8d.onrender.com/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -54,7 +54,7 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/removefromcart", {
+      fetch("https://ecommerce-2x8d.onrender.com/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
