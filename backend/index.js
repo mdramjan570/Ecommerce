@@ -1,4 +1,3 @@
-const port = 4000;
 const express = require("express");
 const app = express();
 const multer = require("multer");
@@ -218,81 +217,6 @@ app.post("/getcart", fetchUser, async (req, res) => {
   let userData = await User.findOne({ _id: req.user.id });
   res.json(userData.cartData);
 });
-//schema creating for user model
-// const Users = mongoose.model("Users", {
-//   name: {
-//     type: String,
-//     requried: true,
-//   },
-//   email: {
-//     type: String,
-//     unique: true,
-//     requried: true,
-//   },
-//   password: {
-//     type: String,
-//     requried: true,
-//   },
-//   cartData: {
-//     type: Object,
-//   },
-//   date: {
-//     type: Date,
-//     default: Date.now(),
-//   },
-// });
-// //Creating Endpoint for register user
-
-// app.post("/signup", async (req, res) => {
-//   let check = await Users.findOne({ email: req.body.email });
-//   if (check) {
-//     return res.json({
-//       success: "false",
-//       error: "Existing user found with same email address ",
-//     });
-//   }
-//   let cart = {};
-//   for (let i = 0; i < 300; i++) {
-//     cart[i] = 0;
-//   }
-//   // Load hash from your password DB.
-//   const HashPassword = await bcrypt.hash(req.body.password, 10);
-//   const user = new Users({
-//     name: req.body.username,
-//     email: req.body.email,
-//     password: HashPassword,
-//     cartData: cart,
-//   });
-//   await user.save();
-//   const data = {
-//     user: {
-//       id: user.id,
-//     },
-//   };
-//   const token = jwt.sign(data, process.env.JWT_SECRET, { expiresIn: "1h" });
-//   res.json({ success: true, token });
-// });
-// //Creating endpoint for user login
-// app.post("/login", async (req, res) => {
-//   let user = await Users.findOne({ email: req.body.email });
-//   if (user) {
-//     const validPassword = bcrypt.compare(req.body.password, user.password);
-//     // const passCompare = req.body.password === user.password;
-//     if (validPassword) {
-//       const data = {
-//         user: {
-//           id: user.id,
-//         },
-//       };
-//       const token = jwt.sign(data, process.env.JWT_SECRET, { expiresIn: "1h" });
-//       res.json({ success: true, token });
-//     } else {
-//       res.json({ success: false, error: "Wrong Passsword" });
-//     }
-//   } else {
-//     res.json({ success: false, error: "Wrong Email Id" });
-//   }
-// });
 
 //Creating Endpoint for newcollections
 app.get("/newcollections", async (req, res) => {
@@ -310,34 +234,10 @@ app.get("/popularwomen", async (req, res) => {
   res.send(popularwomen);
 });
 
-// //create middleware to fetched user
-// const fetchUser = async (req, res, next) => {
-//   const token = req.header("auth-token");
-//   if (!token) {
-//     res.send({ error: "Please Athunticate using valid token" });
-//   } else {
-//     try {
-//       const data = jwt.verify(token, "secret_ecom");
-//       req.user = data.user;
-//       next();
-//     } catch (error) {
-//       res.send({ error: "Please Athunticate using valid token" });
-//     }
-//   }
-// };
-
-// //creating endpoint for add to cartitem
-// app.post("/addtocart", fetchUser, async (req, res) => {
-//   let userData = await Users.findOne({ _id: req.user.id });
-//   userData.cartData[req.body.itemId] += 1;
-//   Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
-//   res.send("Added");
-// });
-
 //Server listen port
 app.listen(process.env.PORT || 5000, (error) => {
   if (!error) {
-    console.log(`The Server is running at port ${port}`);
+    console.log(`The Server is running at port ${process.env.PORT}`);
   } else {
     console.log("Error:" + error);
   }
