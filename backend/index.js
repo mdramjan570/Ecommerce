@@ -6,6 +6,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 
@@ -235,9 +236,9 @@ app.get("/popularwomen", async (req, res) => {
 });
 
 //Server listen port
-app.listen(process.env.PORT || 5000, (error) => {
+app.listen(port || 5000, (error) => {
   if (!error) {
-    console.log(`The Server is running at port ${process.env.PORT}`);
+    console.log(`The Server is running at port ${port}`);
   } else {
     console.log("Error:" + error);
   }
