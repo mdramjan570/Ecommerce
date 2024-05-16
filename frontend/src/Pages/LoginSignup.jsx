@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CSS/LoginSignup.css";
+import CartItems from "../Components/CartItems/CartItems";
 const LoginSignUp = () => {
   const [state, setState] = useState("Login");
   const [formData, setFormData] = useState({
