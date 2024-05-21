@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./AddProduct.css";
 import upload from "../../assets/upload.png";
+import Base_url from "../Base_url/Base_url";
 
 const AddProduct = () => {
   const [image, setImage] = useState(false);
@@ -20,7 +21,7 @@ const AddProduct = () => {
     let product = productDetails;
     let formData = new FormData();
     formData.append("product", image);
-    await fetch("https://ecommerce-2x8d.onrender.com/upload", {
+    await fetch(`${Base_url}/upload`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -32,7 +33,7 @@ const AddProduct = () => {
     if (responseData.success) {
       product.image = responseData.image_url;
       console.log(product);
-      await fetch("https://ecommerce-2x8d.onrender.com/addproduct", {
+      await fetch(`${Base_url}/addproduct`, {
         method: "POST",
         headers: {
           Accept: "application/json",
