@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./NewCollection.css";
 import Item from "../Item/Item";
+import Base_url from "../Base_url/Base_url";
 const NewCollection = () => {
   const [new_collection, setNew_collection] = useState([]);
   useEffect(() => {
-    fetch("https://ecommerce-2x8d.onrender.com/newcollections")
+    fetch(`${Base_url}/newcollections`)
       .then((resp) => resp.json())
       .then((data) => setNew_collection(data));
   }, []);

@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import Base_url from "../Base_url/Base_url";
 export const ShopContext = createContext();
 
 const getDefaultCart = () => {
@@ -13,14 +14,15 @@ const ShopContextProvider = (props) => {
   const [all_product, setAllProduct] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
   useEffect(() => {
-    fetch("https://ecommerce-2x8d.onrender.com/allproducts")
+    //fetch(https://ecommerce-2x8d.onrender.com/allproducts)
+    fetch(`${Base_url}/allproducts`)
       .then((resp) => resp.json())
       .then((data) => setAllProduct(data));
 
     //update cart item also
 
     if (localStorage.getItem("auth-token")) {
-      fetch("https://ecommerce-2x8d.onrender.com/getcart", {
+      fetch(`${Base_url}/getcart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -37,7 +39,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://ecommerce-2x8d.onrender.com/addtocart", {
+      fetch(`${Base_url}/addtocart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -54,7 +56,7 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://ecommerce-2x8d.onrender.com/removefromcart", {
+      fetch(`${Base_url}/removefromcart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",

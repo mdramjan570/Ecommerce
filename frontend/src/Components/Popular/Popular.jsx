@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Item from "../Item/Item.jsx";
+import Base_url from "../Base_url/Base_url";
 import "./Popular.css";
 const Popular = () => {
   const [popularwomen, setPopularwomen] = useState([]);
   useEffect(() => {
-    fetch("https://ecommerce-2x8d.onrender.com/popularwomen")
+    fetch(`${Base_url}/popularwomen`)
       .then((resp) => resp.json())
       .then((data) => setPopularwomen(data));
   }, []);
