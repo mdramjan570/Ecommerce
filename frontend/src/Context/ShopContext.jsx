@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import Base_url from "../Base_url/Base_url";
+import Base_url from "../Components/Base_url/Base_url";
 export const ShopContext = createContext();
 
 const getDefaultCart = () => {
@@ -14,7 +14,6 @@ const ShopContextProvider = (props) => {
   const [all_product, setAllProduct] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
   useEffect(() => {
-    //fetch(https://ecommerce-2x8d.onrender.com/allproducts)
     fetch(`${Base_url}/allproducts`)
       .then((resp) => resp.json())
       .then((data) => setAllProduct(data));

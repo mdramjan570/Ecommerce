@@ -1,2 +1,3 @@
-const Base_url = "https://ecommerce-hazel-three.vercel.app";
+const Base_url = "http://localhost:300";
+
 export default Base_url;
